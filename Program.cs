@@ -1,17 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DotNetCoreSqlDb.Data;
+using Microsoft.EntityFrameworkCore;
+using MvcFlight.Data;
+using MvcFlight.Models;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MvcFlightsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcFlightsContext") ?? throw new InvalidOperationException("Connection string 'MvcFlightsContext' not found.")));
 
 // Add database context and cache
 if(builder.Environment.IsDevelopment())
 {
-    builder.Services.AddDbContext<MyDatabaseContext>(options =>
+    builder.Services.AddDbContext<MvcFlightContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
     builder.Services.AddDistributedMemoryCache();
 }
 else
 {
-    builder.Services.AddDbContext<MyDatabaseContext>(options =>
+    builder.Services.AddDbContext<MvcFlightContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
     builder.Services.AddStackExchangeRedisCache(options =>
     {
