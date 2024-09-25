@@ -1,8 +1,8 @@
-using DotNetCoreSqlDb.Models;
+using MvcFlight.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace DotNetCoreSqlDb.Controllers
+namespace MvcFlight.Controllers
 {
     public class HomeController : Controller
     {

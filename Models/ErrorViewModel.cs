@@ -1,4 +1,4 @@
-namespace dotnet_flights_mvc.Models;
+namespace MvcFlight.Models;
 
 public class ErrorViewModel
 {
